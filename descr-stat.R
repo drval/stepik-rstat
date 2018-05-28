@@ -30,5 +30,21 @@ d3 <- describeBy(x = df[,-c(8,9)], group = df$vs, mat=T, digits = 1, fast=T)
 
 describeBy(df$qsec, group = list(df$vs, df$am), digits = 1, fast=T, mat=T)
 
+str(airquality)
 
 
+#result <- length(aq_789$Ozone[is.na(aq_789$Ozone)==0])
+aq_789 <-  
+result <- aggregate(Ozone ~ Month, subset(airquality, Month %in% c(7,8,9)), length)
+
+x <- describeBy(airquality[,-c(5,6)], group = airquality$Month, mat=T)
+x[x$group1 == 8,][c('Wind4'),'skew']
+
+describe(iris[iris$Species == 'virginica',])
+
+
+my_vector <- rnorm(30)
+my_vector[sample(1:30, 10)] <- NA
+mean(my_vector[is.na(my_vector)==0])
+
+replace(my_vector, which(is.na(my_vector)),mean(my_vector[is.na(my_vector)==0]))
