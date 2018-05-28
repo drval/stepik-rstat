@@ -29,3 +29,6 @@ d2 <- describeBy(x = df[,-c(8,9)], group = df$vs, mat=T, digits = 1)
 d3 <- describeBy(x = df[,-c(8,9)], group = df$vs, mat=T, digits = 1, fast=T)
 
 describeBy(df$qsec, group = list(df$vs, df$am), digits = 1, fast=T, mat=T)
+
+
+
