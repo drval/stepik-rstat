@@ -1,3 +1,4 @@
+setwd("C:/drval/mstat/stepik")
 ?mtcars
 df <- mtcars
 str(df)
@@ -107,3 +108,4 @@ ggplot(iris, aes(Sepal.Length, Sepal.Width))+
 
 ggplot(iris, aes(Sepal.Length, Sepal.Width, col=Species, size=Petal.Length))+
   geom_point()
+
