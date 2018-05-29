@@ -88,3 +88,22 @@ ggplot(df, aes(x = am, y = hp, col=vs))+
 ggplot(df, aes(x = mpg, y = hp, col=vs, size=qsec))+
   geom_point()
 
+#################################
+boxplot(Ozone ~ Month, airquality)
+airquality$Monthf <- as.factor(airquality$Month)
+str(airquality)
+ggplot(airquality, aes(x = as.factor(Month), y = Ozone))+
+  geom_boxplot()
+
+ggplot(mtcars, aes(mpg,disp, col=hp))+
+  geom_point()
+
+
+ggplot(iris, aes(Sepal.Length)) + geom_histogram(aes(fill=Species))
+ggplot(iris, aes(Sepal.Length, fill=Species)) + geom_histogram()
+
+ggplot(iris, aes(Sepal.Length, Sepal.Width))+
+  geom_point(aes(col=Species, size=Petal.Length))
+
+ggplot(iris, aes(Sepal.Length, Sepal.Width, col=Species, size=Petal.Length))+
+  geom_point()
