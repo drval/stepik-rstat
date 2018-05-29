@@ -48,3 +48,36 @@ my_vector[sample(1:30, 10)] <- NA
 mean(my_vector[is.na(my_vector)==0])
 
 replace(my_vector, which(is.na(my_vector)),mean(my_vector[is.na(my_vector)==0]))
+
+#графики
+#гистограмма
+hist(df$mpg, breaks = 5, xlab = "MPG")
+hist(df$mpg, breaks = 20, xlab = "MPG", main ="Histogram of MPG", 
+     col = "green", cex.lab = 1.3, cex.axis = 1.3)
+plot(density(df$mpg), xlab = "MPG", main ="Density of MPG", 
+     col = "green", cex.lab = 1.3, cex.axis = 1.3)
+#боксплот
+boxplot(mpg ~ am, df, ylab="MPG")
+boxplot(mpg ~ am, df, ylab = "MPG", main ="MPG and AM", 
+        col = "green", cex.lab = 1.3, cex.axis = 1.3)
+boxplot(df$mpg[df$am == "Auto"], df$mpg[df$am == "Manual"], ylab = "MPG", main ="MPG and AM", 
+        col = "green", cex.lab = 1.3, cex.axis = 1.3)
+#scatterplot
+plot(df$mpg, df$hp)
+plot(df$mpg, df$hp, xlab = "MPG", ylab ="HP" , main ="MPG and HP", pch = 22)
+plot(~ mpg + hp, df) 
+
+#ggplot2
+library(ggplot2)
+
+ggplot(df, aes(x = mpg))+ 
+  geom_histogram(fill="white", col="black", binwidth = 3)
+
+ggplot(df, aes(x = mpg, fill=am))+ 
+  geom_dotplot(binwidth = 1)
+
+ggplot(df, aes(x = mpg))+ 
+  geom_density(fill = 'red')
+
+ggplot(df, aes(x = mpg, fill=am))+ 
+  geom_density(alpha = 0.2)
