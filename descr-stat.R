@@ -80,4 +80,11 @@ ggplot(df, aes(x = mpg))+
   geom_density(fill = 'red')
 
 ggplot(df, aes(x = mpg, fill=am))+ 
-  geom_density(alpha = 0.2)
+  geom_density(alpha = 0.5)
+
+ggplot(df, aes(x = am, y = hp, col=vs))+
+  geom_boxplot()
+
+ggplot(df, aes(x = mpg, y = hp, col=vs, size=qsec))+
+  geom_point()
+
