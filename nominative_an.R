@@ -69,3 +69,12 @@ t2
 chisq.test(t2)
 #fisher exact test
 fisher.test(t2)
+
+dimnames( HairEyeColor)
+chisq.test(HairEyeColor['Brown',,'Female'])
+
+str(diamonds)
+d2 <- diamonds[,c('cut', 'color')]
+tst <- chisq.test(d2$cut, d2$color)
+as.vector(tst$statistic)
+v <- as.vector( chisq.test(d2$cut, d2$color)$statistic)
