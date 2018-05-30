@@ -23,3 +23,39 @@ as.numeric( prop.table(HairEyeColor[,'Blue','Male'])['Red'])
 prop.table(HairEyeColor[ , ,'Male'],2)['Red','Blue']
 
 sum(HairEyeColor[,'Green', 'Female'])
+
+#barplot
+barplot(t2)
+barplot(t2, beside = T, legend.text = T, args.legend = list(x='topright'))
+
+mosaicplot(t2)
+
+
+library("ggplot2")
+mydata <- as.data.frame(HairEyeColor)
+fdata <- mydata[mydata$Sex=='Female',]
+
+plot <- ggplot(data = fdata, aes(x = Hair, y=Freq, fill=Eye))
+plot + geom_bar(stat='identity', position = 'dodge') + 
+  scale_fill_manual(values=c("Brown", "Blue", "Darkgrey", "Darkgreen"))
+
+  geom_bar(stat="identity", position = "dodge") + 
+  scale_fill_manual(values=c("Brown", "Blue", "Darkgrey", "Darkgreen"))
+
+
+s <- ggplot(mpg, aes(fl, fill = drv))
+s + geom_bar(position = "dodge")
+
+g <- ggplot(mpg, aes(class, hwy))
+g + geom_bar(position = "dodge")
+
+
+
+
+library("ggplot2")
+mydata <- as.data.frame(HairEyeColor)
+obj <- ggplot(data = mydata[mydata$Sex=='Female',], aes(x = Hair, y=Freq, fill=Eye)) + geom_bar(stat='identity', position = 'dodge') + scale_fill_manual(values=c("Brown", "Blue", "Darkgrey", "Darkgreen"))
+
+
+
+
