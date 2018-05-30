@@ -56,6 +56,16 @@ library("ggplot2")
 mydata <- as.data.frame(HairEyeColor)
 obj <- ggplot(data = mydata[mydata$Sex=='Female',], aes(x = Hair, y=Freq, fill=Eye)) + geom_bar(stat='identity', position = 'dodge') + scale_fill_manual(values=c("Brown", "Blue", "Darkgrey", "Darkgreen"))
 
+#binom test
+binom.test(x = 5, n = 20, p = 0.5)
+binom.test(t1)
+t1
+#Chi-square
+chi <- chisq.test(t1)
+chi$expected
+chi$observed
 
-
-
+t2
+chisq.test(t2)
+#fisher exact test
+fisher.test(t2)
