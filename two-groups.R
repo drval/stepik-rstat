@@ -47,4 +47,17 @@ str(lekdata)
 
 t.test(lekdata$Pressure_before, lekdata$Pressure_after, paired = T)
 
+ggplot(df1, aes(Species, Sepal.Length))+
+  stat_summary(fun.data = mean_cl_normal, geom='errorbar', width=0.1)+
+  stat_summary(fun.y = mean, geom='point', size=2)
+
+ggplot(df1, aes(Species, Sepal.Length))+
+  stat_summary(fun.data = mean_cl_normal, geom='pointrange', size=1)
+
+
+wilcox.test(Sepal.Length ~ Species, df1)
+ggplot(df1, aes(Species, Sepal.Length))+ 
+  geom_boxplot()
+
+
 
