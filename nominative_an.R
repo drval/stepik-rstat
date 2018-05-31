@@ -1,3 +1,5 @@
+setwd("C:/drval/mstat/stepik")
+
 df <- read.csv('https://stepic.org/media/attachments/lesson/11502/grants.csv')
 df$status <- as.factor(df$status)
 levels(df$status) <- c('Not funded', 'funded')
@@ -78,3 +80,13 @@ d2 <- diamonds[,c('cut', 'color')]
 tst <- chisq.test(d2$cut, d2$color)
 as.vector(tst$statistic)
 v <- as.vector( chisq.test(d2$cut, d2$color)$statistic)
+
+dim(table(diamonds$carat, diamonds$price))
+diamonds$factor_price <- ifelse(diamonds$price >= mean(diamonds$price), 1, 0)
+diamonds$factor_carat <- ifelse(diamonds$carat >= mean(diamonds$carat), 1, 0)
+
+ft <- table(fprice=diamonds$factor_price, fcarat=diamonds$factor_carat)
+main_stat <- chisq.test(ft)$sta
+
+fit <- fisher.test( table(mtcars$am, mtcars$vs))
+fit$p.value
