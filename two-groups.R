@@ -61,3 +61,12 @@ ggplot(df1, aes(Species, Sepal.Length))+
 
 
 
+tt <- read.table('dataset_11504_15.txt')
+str(tt)
+bartlett.test(V1 ~ V2, tt)
+wilcox.test(V1 ~ V2, tt)
+
+#####
+tt <- read.table('dataset_11504_16.txt')
+str(tt)s
+t.test(tt$V1, tt$V2)
