@@ -40,3 +40,51 @@ summary(fit_npk)
 
 fit_npk3 <- aov(yield ~ (N + P + K), data=npk)
 summary(fit_npk3)
+
+#Pairwise comparisonss
+ggplot(shopdata, aes(x = food, y = price))+
+  geom_boxplot()
+
+fitprice <- aov(price ~ food, data=shopdata)
+summary(fitprice)
+
+TukeyHSD(fitprice)
+#####################
+ggplot(iris, aes(x = Species, y = Sepal.Width))+
+  geom_boxplot()
+fit_iris <- aov(Sepal.Width ~ Species, data=iris)  
+summary(fit_iris)
+TukeyHSD(fit_iris)
+#####################
+tedata <- read.csv('https://stepic.org/media/attachments/lesson/11505/therapy_data.csv')
+str(tedata)
+tedata$subject <- as.factor(tedata$subject)
+
+#модель самочувствие ~ терапия, без учета повт. испытаний
+f1 <- aov(well_being ~ therapy, data=tedata)
+summary(f1)
+
+#модель самочувствие ~ терапия, с учетом повт. испытаний
+f2 <- aov(well_being ~ therapy + Error(subject/therapy), data = tedata)
+summary(f2)
+
+#модель самочувствие ~ терапия*цена, без учета повт. испытаний
+f11 <- aov(well_being ~ therapy*price, data= tedata)
+summary(f11)
+
+ggplot(data= tedata, aes(x = price, y= well_being))+
+  geom_boxplot()
+
+#модель самочувствие ~ терапия*цена, с учетом повт. испытаний
+f22 <- aov(well_being ~ therapy*price + Error(subject/(therapy*price)), data = tedata)
+summary(f22)           
+
+ggplot(data= tedata, aes(x = price, y= well_being))+
+  geom_boxplot()+
+  facet_grid(~subject)
+
+f3 <- aov(well_being ~ therapy*price*sex, data=tedata)
+summary(f3)
+
+f32 <- aov(well_being ~ therapy*price*sex + Error(subject/(therapy*price)), data=tedata)
+summary(f32)
