@@ -88,3 +88,25 @@ summary(f3)
 
 f32 <- aov(well_being ~ therapy*price*sex + Error(subject/(therapy*price)), data=tedata)
 summary(f32)
+
+###################
+pdata <- read.csv('https://stepic.org/media/attachments/lesson/11505/Pillulkin.csv')
+str(pdata)
+pdata$patient <- as.factor(pdata$patient)
+pm <- aov(temperature ~ pill + Error(patient/pill), data=pdata)
+summary(pm)
+
+ggplot(data= pdata, aes(x = pill, y= temperature))+
+  geom_boxplot()+
+  facet_grid(~patient)
+
+pm2 <- aov(temperature ~ pill*doctor + Error(patient/(pill*doctor)), data=pdata)
+summary(pm2)           
+
+
+library(ggplot2)
+obj <- ggplot(ToothGrowth, aes(x = as.factor(dose), y = len, col=supp, group = supp))+
+  stat_summary(fun.data = mean_cl_boot, geom = 'errorbar', width = 0.1, position = position_dodge(0.2))+
+  stat_summary(fun.data = mean_cl_boot, geom = 'point', size = 3, position = position_dodge(0.2))+
+  stat_summary(fun.data = mean_cl_boot, geom = 'line', position = position_dodge(0.2))
+obj
