@@ -55,6 +55,16 @@ iris$Petal.Length <- -iris$Petal.Length
 filtered.cor(tdat)
 
 
+df <- read.csv("https://stepik.org/media/attachments/course/129/test_data.csv")
+df <- iris[,1:2]
+pv1 <- shapiro.test(df[,1])$p.value
+pv2 <- shapiro.test(df[,2])$p.value
+cor.test(df[,1],df[,2], method = ifelse((pv1 < 0.05 | pv2 < 0.05), 'spearman', 'pearson'))$estimate
+
 smart_cor <- function(x){
-  
+  pv1 <- shapiro.test(x[,1])$p.value
+  pv2 <- shapiro.test(x[,2])$p.value
+  as.vector(cor.test(x[,1], x[,2], method = ifelse(pv1 < 0.05 | pv2 < 0.05, 'spearman', 'pearson'))$estimate)
 }
+
+smart_cor(iris[,1:2])
