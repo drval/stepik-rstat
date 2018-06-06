@@ -45,3 +45,41 @@ models <- lapply(fms, FUN=function(i) {
 #получение модели с наиб. R^2 adjusted
 models[[which.max(unlist(lapply(models, function(x) x$sq)))]]
 
+str(attitude)
+summary(lm(rating ~ complaints * critical, attitude))
+##########################
+hist(swiss$Catholic, col = 'red')
+swiss$religious <- ifelse(swiss$Catholic > 60, 'Lots', 'Few')
+swiss$religious <- as.factor(swiss$religious)
+
+fit3 <- lm(Fertility ~ Examination + religious, data = swiss)
+summary(fit3)
+
+fit4 <- lm(Fertility ~ Examination * religious, data = swiss)
+summary(fit4)
+
+library(ggplot2)
+ggplot(swiss, aes(x = Examination, y = Fertility)) + 
+  geom_point() 
+
+ggplot(swiss, aes(x = Examination, y = Fertility)) + 
+  geom_point() + 
+  geom_smooth(method = 'lm')
+
+
+ggplot(swiss, aes(x = Examination, y = Fertility, col=religious)) + 
+  geom_point()+
+  geom_smooth(method = 'lm')
+
+fit5 <- lm(Fertility ~  religious * Infant.Mortality * Examination, data = swiss)
+
+summary(fit5)
+#############################################3
+mtcars$am <- factor(mtcars$am, labels = c('Automatic', 'Manual'))
+mtcars$am <- factor(mtcars$am)
+fit_mtc <- lm(mpg ~wt*am, mtcars)
+summary(fit_mtc)
+
+
+ggplot(mtcars, aes(x = wt, y = mpg, col=am)) + 
+  geom_smooth(method = 'lm')
